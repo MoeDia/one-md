@@ -1,0 +1,16 @@
+name: ci
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: fedora:45
+    steps:
+      - run: dnf -q install -y git ShellCheck gitleaks python3 diffutils
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: git config --global --add safe.directory "*"
+      - run: ./test.sh
+      - run: gitleaks git --no-banner --redact --exit-code 3
