@@ -31,7 +31,7 @@ t "but keeps it as a backup" bash -c "grep -q 'my own rules' $h/.claude/CLAUDE.m
 t "uninstall brings the backup back" run --uninstall
 t "the old file is back" grep -q 'my own rules' "$h/.claude/CLAUDE.md"
 rm -f "$h/.claude/CLAUDE.md"; ln -s /dev/null "$h/.claude/CLAUDE.md"
-tn "a home-manager link is never overwritten" run
+tn "a linked file is never overwritten" run
 t "and is left as it was" test -L "$h/.claude/CLAUDE.md"
 rm -f "$h/.claude/CLAUDE.md"
 t "uninstall with nothing there is fine" run --uninstall

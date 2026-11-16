@@ -11,9 +11,9 @@ dst=$dir/CLAUDE.md
 
 [[ -s $src ]] || { echo "CLAUDE.md is missing next to install.sh." >&2; exit 1; }
 
-# On NixOS with home-manager the file may be a link into the Nix store: home-manager owns it then.
+# A link means another tool manages this file (for example a dotfiles repo), so it's left alone.
 if [[ -L $dst ]]; then
-  echo "$dst is a link, likely managed by home-manager. Update it there instead (see README)." >&2
+  echo "$dst is a link to another file. Update that file instead, or remove the link and run this again." >&2
   exit 1
 fi
 

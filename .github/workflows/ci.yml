@@ -3,7 +3,12 @@ on: [push, pull_request]
 permissions:
   contents: read
 jobs:
-  test:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./test.sh
+  fedora:
     runs-on: ubuntu-latest
     container: fedora:45
     steps:
